@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="UndirLaFlota.MainPage">
+
+    <ScrollView>
+        <Grid x:Name="LayoutRoot">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Label Text="Hundir la Flota"
+                   FontSize="28"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   Margin="0,20"/>
+
+            <!-- Contenedor adaptable -->
+            <Grid x:Name="ContentGrid"
+                  Grid.Row="1"
+                  RowSpacing="20"
+                  ColumnSpacing="20"
+                  Padding="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Tablero del jugador -->
+                <VerticalStackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+                    <Label Text="Tablero del Jugador"
+                           FontSize="18"
+                           HorizontalOptions="Center"/>
+                    <Grid x:Name="TableroJugadorGrid"
+                          HorizontalOptions="Center"/>
+                </VerticalStackLayout>
+
+                <!-- Tablero enemigo -->
+                <VerticalStackLayout Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+                    <Label Text="Tablero del Enemigo"
+                           FontSize="18"
+                           HorizontalOptions="Center"/>
+                    <Grid x:Name="TableroMaquinaGrid"
+                          HorizontalOptions="Center"/>
+                </VerticalStackLayout>
+
+                <!-- HORIZONTAL MODE -->
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup Name="OrientationStates">
+                        <VisualState Name="Portrait">
+                            <VisualState.Setters>
+                                <Setter TargetName="TableroJugadorGrid" Property="Grid.Row" Value="0"/>
+                                <Setter TargetName="TableroJugadorGrid" Property="Grid.Column" Value="0"/>
+                                <Setter TargetName="TableroJugadorGrid" Property="Grid.ColumnSpan" Value="2"/>
+                                <Setter TargetName="TableroMaquinaGrid" Property="Grid.Row" Value="1"/>
+                                <Setter TargetName="TableroMaquinaGrid" Property="Grid.Column" Value="0"/>
+                                <Setter TargetName="TableroMaquinaGrid" Property="Grid.ColumnSpan" Value="2"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState Name="Landscape">
+                            <VisualState.Setters>
+                                <Setter TargetName="TableroJugadorGrid" Property="Grid.Row" Value="0"/>
+                                <Setter TargetName="TableroJugadorGrid" Property="Grid.Column" Value="0"/>
+                                <Setter TargetName="TableroJugadorGrid" Property="Grid.ColumnSpan" Value="1"/>
+                                <Setter TargetName="TableroMaquinaGrid" Property="Grid.Row" Value="0"/>
+                                <Setter TargetName="TableroMaquinaGrid" Property="Grid.Column" Value="1"/>
+                                <Setter TargetName="TableroMaquinaGrid" Property="Grid.ColumnSpan" Value="1"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </Grid>
+
+            <!-- Contadores y botón -->
+            <VerticalStackLayout Grid.Row="2" Padding="20" Spacing="10" HorizontalOptions="Center">
+                <HorizontalStackLayout Spacing="15" HorizontalOptions="Center">
+                    <Label x:Name="AciertosLabel" Text="Aciertos: 0" FontSize="16"/>
+                    <Label x:Name="FallosLabel" Text="Fallos: 0" FontSize="16"/>
+                    <Label x:Name="DisparosLabel" Text="Disparos: 0" FontSize="16"/>
+                </HorizontalStackLayout>
+
+                <Button Text="Nueva Partida"
+                        x:Name="NuevaPartidaButton"
+                        Clicked="NuevaPartida_Clicked"
+                        BackgroundColor="DarkOliveGreen"
+                        TextColor="White"
+                        CornerRadius="10"
+                        Padding="10"
+                        HorizontalOptions="Center"/>
+            </VerticalStackLayout>
+        </Grid>
+    </ScrollView>
+
+</ContentPage>
